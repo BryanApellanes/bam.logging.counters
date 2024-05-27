@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bam.Net.Logging.Counters
+namespace Bam.Logging.Counters
 {
     public class Stats
     {

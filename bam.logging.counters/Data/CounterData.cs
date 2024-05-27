@@ -1,9 +1,9 @@
-﻿using Bam.Net.Data.Repositories;
+﻿using Bam.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bam.Net.Logging.Counters.Data
+namespace Bam.Logging.Counters.Data
 {
     [Serializable]
     public class CounterData : CompositeKeyAuditRepoData
