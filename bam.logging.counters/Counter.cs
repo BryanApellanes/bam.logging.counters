@@ -1,7 +1,13 @@
 ﻿namespace Bam.Logging.Counters
 {
+    /// <summary>
+    /// A named counter that tracks a numeric value, supporting increment, decrement, and custom count readers.
+    /// </summary>
     public class Counter: Stats
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Counter"/> class with a default count reader.
+        /// </summary>
         public Counter()
         {
             DefaultCountReader = () => _count;
@@ -10,6 +16,9 @@
 
         protected Func<ulong> DefaultCountReader { get; }
 
+        /// <summary>
+        /// Gets or sets the counter value as an object. Getter returns <see cref="Count"/>, setter casts to <see cref="ulong"/>.
+        /// </summary>
         public override object Value
         {
             get
@@ -23,6 +32,9 @@
         }
 
         ulong _count;
+        /// <summary>
+        /// Gets or sets the current count value. The getter delegates to <see cref="CountReader"/>.
+        /// </summary>
         public ulong Count
         {
             get
@@ -35,8 +47,15 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the function used to read the counter value. Defaults to returning the internal count.
+        /// </summary>
         public Func<ulong> CountReader { get; set; }
 
+        /// <summary>
+        /// Increments the internal counter by one. Logs a trace warning if a custom CountReader is set.
+        /// </summary>
+        /// <returns>This <see cref="Counter"/> instance for chaining.</returns>
         public Counter Increment()
         {
             ++_count;
@@ -47,6 +66,10 @@
             return this;
         }
 
+        /// <summary>
+        /// Decrements the internal counter by one. Logs a trace warning if a custom CountReader is set.
+        /// </summary>
+        /// <returns>This <see cref="Counter"/> instance for chaining.</returns>
         public Counter Decrement()
         {
             --_count;
@@ -57,6 +80,11 @@
             return this;
         }
 
+        /// <summary>
+        /// Creates a new counter representing the difference between this counter and the specified counter.
+        /// </summary>
+        /// <param name="counter">The counter to subtract from this counter.</param>
+        /// <returns>A new <see cref="Counter"/> with the computed difference.</returns>
         public Counter Diff(Counter counter)
         {
             return new Counter() { Name = Name, Value = Count - counter.Count };
