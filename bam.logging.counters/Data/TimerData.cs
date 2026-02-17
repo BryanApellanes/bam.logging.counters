@@ -16,16 +16,16 @@ namespace Bam.Logging.Counters.Data
         /// <summary>
         /// Gets or sets the user name that owns this timer.
         /// </summary>
-        public string UserName { get; set; }
+        public string UserName { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the name of the timer.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the string representation of the timer value.
         /// </summary>
-        public string Value { get; set; }
+        public string Value { get; set; } = null!;
     }
 }

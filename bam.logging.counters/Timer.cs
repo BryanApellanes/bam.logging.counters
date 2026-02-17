@@ -23,12 +23,12 @@
         /// <summary>
         /// Gets or sets the instant when the timer was started.
         /// </summary>
-        public Instant StartTime { get; set; }
+        public Instant StartTime { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the instant when the timer was ended.
         /// </summary>
-        public Instant EndTime { get; set; }
+        public Instant EndTime { get; set; } = null!;
         int _duration;
         /// <summary>
         /// Gets or sets the elapsed time in milliseconds. Computed from <see cref="StartTime"/> and <see cref="EndTime"/> if both are set.

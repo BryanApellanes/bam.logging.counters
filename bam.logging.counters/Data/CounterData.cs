@@ -17,17 +17,17 @@ namespace Bam.Logging.Counters.Data
         /// Gets or sets the user name that owns this counter. Part of the composite key.
         /// </summary>
         [CompositeKey]
-        public string UserName { get; set; }
+        public string UserName { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the name of the counter. Part of the composite key.
         /// </summary>
         [CompositeKey]
-        public string CounterName { get; set; }
+        public string CounterName { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the string representation of the counter value.
         /// </summary>
-        public string Value { get; set; }
+        public string Value { get; set; } = null!;
     }
 }

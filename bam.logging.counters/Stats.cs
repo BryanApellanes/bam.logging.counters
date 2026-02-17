@@ -10,12 +10,12 @@ namespace Bam.Logging.Counters
         /// <summary>
         /// Gets or sets the name of this stats instance.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         /// <summary>
         /// Gets or sets the value of this stats instance.
         /// </summary>
-        public virtual object Value { get; set; }
+        public virtual object Value { get; set; } = null!;
 
         static ConcurrentDictionary<string, Stats> _stats = new ConcurrentDictionary<string, Stats>();
 
@@ -37,7 +37,7 @@ namespace Bam.Logging.Counters
         /// <param name="timer">The timer to end.</param>
         /// <param name="endHandler">An optional callback invoked asynchronously after the timer ends.</param>
         /// <returns>The ended <see cref="Timer"/>.</returns>
-        public static Timer End(Timer timer, Action<Timer> endHandler = null)
+        public static Timer End(Timer timer, Action<Timer> endHandler = null!)
         {
             End(timer.Name);
             timer.End();
@@ -58,7 +58,7 @@ namespace Bam.Logging.Counters
         {
             Timer timer = GetStats<Timer>(name, 0);
             timer.End();
-            if(!_stats.TryRemove(name, out Stats value))
+            if(!_stats.TryRemove(name, out Stats? value))
             {
                 Log.Trace("Failed to remove timer {0}", name);
             }
@@ -163,9 +163,9 @@ namespace Bam.Logging.Counters
                 _stats.TryAdd(name, stats);
                 return stats;
             }
-            else if (_stats.TryGetValue(name, out Stats value))
+            else if (_stats.TryGetValue(name, out Stats? value))
             {
-                T stats = (T)value;
+                T stats = (T)value!;
                 return stats;
             }
             else

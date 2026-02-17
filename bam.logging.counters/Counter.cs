@@ -35,7 +35,7 @@
         /// <summary>
         /// Gets or sets the current count value. The getter delegates to <see cref="CountReader"/>.
         /// </summary>
-        public ulong Count
+        public new ulong Count
         {
             get
             {
